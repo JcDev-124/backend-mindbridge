@@ -15,7 +15,7 @@ public class SendQuestionService {
 
     private String sendQuestionImage(Question question) {
         // Requisicao pra API
-        return question.toString() + "\nRequisicao  de Imagem";
+        return question.toString() + "\nRequisicao  de Imagem ";
     }
 
     private String sendQuestionText(Question question) {
