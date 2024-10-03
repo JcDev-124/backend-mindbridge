@@ -1,5 +1,5 @@
 package com.servidortcc.julio.services;
-import com.servidortcc.julio.entities.Question;
+import com.servidortcc.julio.domain.questions.Question;
 import org.springframework.stereotype.Service;
 
 
@@ -16,6 +16,7 @@ public class SendQuestionService {
     private String sendQuestionImage(Question question) {
         // Requisicao pra API
         return question.toString() + "\nRequisicao  de Imaagem ";
+
     }
 
     private String sendQuestionText(Question question) {

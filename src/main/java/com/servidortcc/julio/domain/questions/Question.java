@@ -1,7 +1,6 @@
-package com.servidortcc.julio.entities;
+package com.servidortcc.julio.domain.questions;
 
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,6 +20,21 @@ public class Question {
     private String message;
     private String neurodiversityOption;
     private String importantWords;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static String convertBase64ToJpeg(String base64Image, String outputFilePath) {
         try {
