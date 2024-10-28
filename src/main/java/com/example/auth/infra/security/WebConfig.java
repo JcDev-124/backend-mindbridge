@@ -16,7 +16,12 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedMethods("*").allowedOrigins(corsOrigins);
+                registry.addMapping("/**")
+                        .allowedMethods("*")
+                        .allowedOriginPatterns(corsOrigins.split(","))
+                        .allowedOrigins("http://127.0.0.1:8083") // Adiciona o domínio específico
+                        // Use allowedOriginPatterns
+                        .allowedHeaders("*"); // Adiciona allowedHeaders
             }
         };
     }

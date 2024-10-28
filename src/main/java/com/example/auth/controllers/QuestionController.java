@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/question")
-@CrossOrigin("*")
 
 public class QuestionController {
 
     @Autowired
     QuestionService sendQuestionService;
-
-    @CrossOrigin(origins = "*")
 
     @PostMapping
     public ResponseEntity<String> sendQuestion(@RequestBody Question question) {
