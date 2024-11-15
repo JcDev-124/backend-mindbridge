@@ -3,6 +3,7 @@ package com.example.auth.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,20 +21,6 @@ public class TokenService {
     private String secret;
 
 
-    @Deprecated
-    public boolean validateToken(String token) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            JWT.require(algorithm)
-                    .withIssuer("auth-api")
-                    .build()
-                    .verify(token);
-            return true;
-        } catch (JWTVerificationException exception) {
-            return false;
-        }
-    }
-
     public String getClaimsFromToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -44,12 +31,10 @@ public class TokenService {
 
             return decodedJWT.getClaim("roles").asString();
 
+        } catch (TokenExpiredException e) {
+            throw new RuntimeException("Token expired. Please refresh the token.", e);
         } catch (Exception exception) {
             throw new RuntimeException("Error while parsing token", exception);
         }
-    }
-
-    private Instant genExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }
