@@ -1,11 +1,15 @@
 package com.example.auth.services;
 import com.example.auth.domain.questions.Question;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class QuestionService {
-    public String receiverQuestion(Question question) {
+
+    private ApiInterface apiInterface;
+
+    public String receiverQuestion(Question question) throws JSONException {
         if(question.getImageBase64().isEmpty()){
             return sendQuestionText(question);
         }else{
@@ -13,15 +17,13 @@ public class QuestionService {
         }
     }
 
-    private String sendQuestionImage(Question question) {
-        // Requisicao pra API
-        return question.toString() + "\nRequisicao  de Imaagem ";
+    private String sendQuestionImage(Question question) throws JSONException {
+        return apiInterface.questionImage(question);
 
     }
 
-    private String sendQuestionText(Question question) {
-        // REQUISICAO PRA API
-        return question.toString() + "\nRequisicao de texto";
+    private String sendQuestionText(Question question) throws JSONException {
+        return apiInterface.questionText(question);
     }
 
 
