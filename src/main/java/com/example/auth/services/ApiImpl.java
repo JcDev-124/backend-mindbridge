@@ -30,7 +30,7 @@ import static java.awt.SystemColor.text;
 public class ApiImpl implements ApiInterface {
 
     //@Value("${api.gpt}")
-    private static String API_KEY = "YOUR_API_KEY";
+    private static String API_KEY = "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";
 
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
     private static final String MODEL_NAME = "gpt-3.5-turbo";
@@ -49,7 +49,7 @@ public class ApiImpl implements ApiInterface {
         httpPost.setHeader("Authorization", "Bearer " + API_KEY);
 
         // Corpo da requisição
-        String json = "{ \"model\": \"" + MODEL_NAME + "\", \"messages\": [{ \"role\": \"user\", \"content\": \"" + question.getMessage() + "\"}]}";
+        String json = "{ \"model\": \"" + MODEL_NAME + "\", \"messages\": [{ \"role\": \"user\", \"content\": \"" + "Adapte essa questão considerando questoes neurodivergentes, deixe mais acessivel "+ question.getMessage() + "\"}]}";
 
         StringEntity entity = new StringEntity(json);
         httpPost.setEntity(entity);
