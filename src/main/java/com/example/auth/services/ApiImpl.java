@@ -49,7 +49,7 @@ public class ApiImpl implements ApiInterface {
         httpPost.setHeader("Authorization", "Bearer " + API_KEY);
 
         // Corpo da requisição
-        String json = "{ \"model\": \"" + MODEL_NAME + "\", \"messages\": [{ \"role\": \"user\", \"content\": \"" + "Adapte essa questão considerando questoes neurodivergentes, deixe mais acessivel "+ question.getMessage() + "\"}]}";
+        String json = "{ \"model\": \"" + MODEL_NAME + "\", \"messages\": [{ \"role\": \"user\", \"content\": \"" + question.getMessage() + "\"}]}";
 
         StringEntity entity = new StringEntity(json);
         httpPost.setEntity(entity);
