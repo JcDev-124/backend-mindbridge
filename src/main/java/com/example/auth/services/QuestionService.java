@@ -17,12 +17,13 @@ public class QuestionService {
 
 
     public String receiverQuestion(Question question) throws JSONException, IOException {
-        if(question.getImageBase64().isEmpty()){
+        if (question.getImageBase64() == null || question.getImageBase64().isEmpty())
             return sendQuestionText(question);
-        }else{
-            return sendQuestionImage(question);
-        }
+
+        return sendQuestionImage(question);
+
     }
+
 
     private String sendQuestionImage(Question question) throws JSONException, UnsupportedEncodingException {
         return apiInterface.questionImage(question);

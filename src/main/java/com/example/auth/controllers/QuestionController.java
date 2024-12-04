@@ -20,12 +20,15 @@ public class QuestionController {
     @PostMapping
     public ResponseEntity<String> sendQuestion(@RequestBody Question question) {
         try {
+            System.out.println("Recebido: " + question);
             String result = sendQuestionService.receiverQuestion(question);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace(); // Log completo da exceção
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping
     public ResponseEntity test(){
